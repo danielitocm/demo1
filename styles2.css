@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+::selection{
+  background-color: rgba(45, 27, 211, 0.952);
+  color: #FFF;
+}
+body {
+  margin: 0;
+  font-family: "Teko", sans-serif;
+}
+canvas {
+  position: fixed;
+}
+h1 {
+  position: fixed;
+  z-index: 50;
+  top: 30%;
+  left: 50%;
+  right: 0;
+  width: 240px;
+  margin: -45px 0 0 -120px;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0px;
+  border: solid 3px #fff;
+  font-size: 45px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+h3{
+
+  position: fixed;
+  z-index: 50;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  width: 240px;
+  margin: -45px 0 0 -120px;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0px;
+  border: solid 3px #fff;
+  font-size: 10px;
+  font-weight: 300;
+  text-transform: uppercase;
+
+}
+
+a{
+
+
+  position: fixed;
+  z-index: 50;
+  top: 70%;
+  left: 50%;
+  right: 0;
+  width: 240px;
+  margin: -45px 0 0 -120px;
+  text-align: center;
+  color:gray;
+  padding: 10px 0px;
+  border: solid 3px #fff;
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: uppercase;
+
+}
+
+h6{
+  position: fixed;
+  z-index: 50;
+  top: 90%;
+  left: 50%;
+  right: 0;
+  width: 240px;
+  margin: -45px 0 0 -120px;
+  text-align: center;
+  color:white;
+  padding: 10px 0px;
+  border: solid 3px #fff;
+  font-size: 10px;
+  font-weight: 200;
+  text-transform: uppercase;
+
+
+
+}
