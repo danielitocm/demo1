@@ -18,6 +18,7 @@ var frames = 0;
 //var x = canvas.width/2;
 //var y = canvas.height -20;
 var score=0;
+var llegadas=0;
 
 var images = {
     mb: "car1.png",
@@ -25,6 +26,9 @@ var images = {
 
 
 }
+
+
+
 
 
 class Board{
@@ -49,7 +53,7 @@ ctx.drawImage(this.image,this.x + this.width,this.y,this.width,this.height)
 
 ctx.font = "50px Avenir"
 ctx.fillStyle = "green"
-//ctx.fillText(Math.floor(frames / 100),50,50)
+
 }
 
 } //clase Board
@@ -72,6 +76,8 @@ class Coche {
       this.x-=2
       ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
   }
+
+
 }
 
 
@@ -133,7 +139,7 @@ class Jugador {
     return console.log("RESOUESTA"+  prompt("¿Todas las cosas en un video juego son un objeto que viene de una:?")) 
        if (prompt=="clase"){
          console.log("ganaste")
-         score++;
+         
        }
        else{
          console.log("perdiste") 
@@ -165,7 +171,8 @@ var jugador4 = new Jugador (500,600,30,30,'peru')
 
 
 function update(){
-  frames++    
+  frames++   
+   
   board.draw()
   // cuadrito.draw()
   ctx.clearRect(0,0,780, 720)
@@ -173,10 +180,11 @@ function update(){
   jugador2.draw()
   jugador3.draw()
   jugador4.draw()
-  
+  score++
   drawScore()
   generateCamiones()
   drawCamiones()
+  checkCamionCollisions()
  // borrar()
 
 
@@ -189,6 +197,12 @@ function start(){
   frames = 0
   interval = setInterval(update, 1000/60)
   board.music.play()
+  
+}
+
+function gameOver(){
+  clearInterval(interval)
+  prompt("¿Cuál es tu mensaje postumo?")
   
 }
 
@@ -251,8 +265,12 @@ class Camion {
     ctx.fillStyle=this.color
     ctx.fillRect(this.x, this.y, this.w, this.h)
   }
-    
-
+  checkCollision(item){
+    return  (this.x < item.x + item.w) &&
+            (this.x + this.w > item.x) &&
+            (this.y < item.y + item.h) &&
+            (this.y + this.h > item.y);
+}
 }
 
 
@@ -271,6 +289,19 @@ function drawCamiones(){
     c.draw()
   })
 }
+
+function checkCamionCollisions(){
+  camiones.forEach((camion)=>{
+    if(camion.checkCollision(jugador1) ||
+    camion.checkCollision(jugador2) ||
+    camion.checkCollision(jugador3) ||
+    camion.checkCollision(jugador4) ){
+      gameOver()
+    }
+  })
+}
+
+
 
 
 
