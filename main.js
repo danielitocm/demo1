@@ -1,19 +1,23 @@
+//canvas y variables globales
+//classes
+//instancias
+//funciones principales
+//funciones aux
+//controles y eventos
+
+
 var canvas = document.getElementsByTagName('canvas')[0];
 var ctx = canvas.getContext('2d')
 
-/*
-var canvas2 = document.getElementsByTagName('canvas2')[0];
-var ctx2 = canvas.getContext('2d')
-*/
 
 
 
-var coches = []
+var camiones = []
 var interval;
 var frames = 0;
 //var x = canvas.width/2;
 //var y = canvas.height -20;
-var score = 0;
+var score=0;
 
 var images = {
     mb: "car1.png",
@@ -30,7 +34,7 @@ class Board{
       this.width = canvas.width
       this.height = canvas.height
       this.image = document.createElement('img')
-      this.image.src = images.mb
+   // this.image.src = images.mb
       this.image.onload = () => {
       this.draw()
       }
@@ -45,7 +49,7 @@ ctx.drawImage(this.image,this.x + this.width,this.y,this.width,this.height)
 
 ctx.font = "50px Avenir"
 ctx.fillStyle = "green"
-ctx.fillText(Math.floor(frames / 100),50,50)
+//ctx.fillText(Math.floor(frames / 100),50,50)
 }
 
 } //clase Board
@@ -74,23 +78,7 @@ class Coche {
 var board = new Board()
 //var coche = new Coche()
 //funciones principales
-function update(){
-    frames++
-    ctx.clearRect(0,0,canvas.width,canvas.height)
-    board.draw()
-   // cuadrito.draw()
-  
-    generateCoches()
-   // drawCoches()
-   // checkCollitions()
-}
 
-function start(){
-    if(interval) return
-    coches = []
-    frames = 0
-    interval = setInterval(update, 1000/60)
-}
 
 
 //funciones auxiliares
@@ -104,13 +92,8 @@ addEventListener('keydown', function(e){
        coche.y -= 60
    } 
 
-   if(e.keyCode === 27){
+   if(e.keyCode === 13){
     start()
-   }
-
-   if(e.key = "Enter"){
-       start()
-       board.music.play()
    }
 
 })
@@ -167,31 +150,47 @@ class Jugador {
 
 function drawScore() {
   ctx.font = "30px Arial";
-  ctx.fillStyle = "red";
+  ctx.fillStyle = "black";
   ctx.fillText("Score: "+score, 8, 20);
 }
 
 
+//Jugador2  
 
 var jugador1 = new Jugador (200,600,30,30,'blue')
+var jugador2 = new Jugador (300,600,30,30,'yellow')
+var jugador3 = new Jugador (400,600,30,30,'green')
+var jugador4 = new Jugador (500,600,30,30,'peru')
 
-var interval = setInterval(function(){
+
+
+function update(){
+  frames++    
+  board.draw()
+  // cuadrito.draw()
   ctx.clearRect(0,0,780, 720)
-  
   jugador1.draw()
   jugador2.draw()
   jugador3.draw()
   jugador4.draw()
+  
   drawScore()
+  generateCamiones()
+  drawCamiones()
+ // borrar()
 
-}, 1000/60)
 
-//Jugador2  
+ // checkCollitions()
+}
 
-
-var jugador2 = new Jugador (300,600,30,30,'yellow')
-var jugador3 = new Jugador (400,600,30,30,'green')
-var jugador4 = new Jugador (500,600,30,30,'peru')
+function start(){
+  if(interval) return
+  camiones = []
+  frames = 0
+  interval = setInterval(update, 1000/60)
+  board.music.play()
+  
+}
 
 document.onkeydown=function(e){
   switch(e.keyCode){
@@ -231,13 +230,68 @@ document.onkeydown=function(e){
 
 
 
-//Dibujar camion
 
+////////////////////////////////////////Clase camion
+  
+class Camion {
+  constructor(x,y,w,h,color, vel){
+    this.x=x
+    this.y=y
+    this.w=w
+    this.h=h
+    this.color=color
+    this.right=true
+    this.down=false
+    this.vel = vel
+    
+    
+  }
+  draw(){
+    this.x+=this.vel
+    ctx.fillStyle=this.color
+    ctx.fillRect(this.x, this.y, this.w, this.h)
+  }
+    
+
+}
+
+
+function generateCamiones(){
+  var w = 200
+  var h = 50
+  var y = Math.floor(Math.random()*400)
+  var x = 0-w
+  var vel = Math.floor(Math.random()*2)
+  if(frames%50===0)camiones.push(new Camion(x, y, w, h, 'red', vel))
+}
+
+
+function drawCamiones(){
+  camiones.forEach(function(c){
+    c.draw()
+  })
+}
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////
+//Dibujar camion A MANO, antes de cambiarlo a clase
+
+
+/*
 var x = canvas.width-900;
 var y = canvas.height-320;
-var dx = 2;
+var dx = 20;
 var busW = 200;
 
+
+  
 
 function drawM() {
     ctx.beginPath();
@@ -255,9 +309,9 @@ function drawM2() {
   ctx.closePath();
 }
 
-
+   
 function borrar() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawM();
     drawM2()
    
@@ -267,30 +321,18 @@ function borrar() {
 }
 
 //drawM2();
-setInterval(borrar, 30);
+//setInterval(borrar, 100);
 
-
-// hardcodeo para los camiones
-/*
-class Camiones{
-  constructor(){
-      this.Camiones1 = []           //era balls
-      this.x = 0
-      this.y = 0
-      this.width = 50
-      this.height=60
-      this.image1 = new Image()
-      this.image1.src = "camion22.png"
-      this.theImage = this.image1
-      this.howManyTimesMarioHasBeenTouched = 0
-  }
 
 */
 
 
+/*
 class Pregunta{
   constructor(pregunta,respuesta){
     this.pregunta= pregunta;
     this.respuesta= respuesta;
   }
 }
+
+*/
