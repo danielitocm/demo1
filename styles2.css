@@ -1,10 +1,8 @@
 * {
   box-sizing: border-box;
+  background-color: black;
 }
-::selection{
-  background-color: rgba(45, 27, 211, 0.952);
-  color: #FFF;
-}
+
 body {
   margin: 0;
   font-family: "Teko", sans-serif;
@@ -15,11 +13,11 @@ canvas {
 h1 {
   position: fixed;
   z-index: 50;
-  top: 30%;
+  top: 20%;
   left: 50%;
   right: 0;
   width: 240px;
-  margin: -45px 0 0 -120px;
+ margin: -45px 0 0 -120px;
   text-align: center;
   color: #fff;
   padding: 10px 0px;
@@ -33,7 +31,7 @@ h3{
 
   position: fixed;
   z-index: 50;
-  top: 50%;
+  top: 40%;
   left: 50%;
   right: 0;
   width: 240px;
@@ -53,7 +51,7 @@ a{
 
   position: fixed;
   z-index: 50;
-  top: 70%;
+  top: 90%;
   left: 50%;
   right: 0;
   width: 240px;
@@ -71,7 +69,7 @@ a{
 h6{
   position: fixed;
   z-index: 50;
-  top: 90%;
+  top: 50%;
   left: 50%;
   right: 0;
   width: 240px;
@@ -84,6 +82,22 @@ h6{
   font-weight: 200;
   text-transform: uppercase;
 
+}
 
+h5{
+  position: fixed;
+  z-index: 50;
+  top: 70%;
+  left: 50%;
+  right: 0;
+  width: 240px;
+  margin: -45px 0 0 -120px;
+  text-align: center;
+  color:white;
+  padding: 10px 0px;
+  border: solid 3px #fff;
+  font-size: 10px;
+  font-weight: 200;
+  text-transform: uppercase;
 
 }
