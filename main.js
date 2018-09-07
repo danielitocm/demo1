@@ -174,7 +174,6 @@ function update(){
   frames++   
    
   board.draw()
-  // cuadrito.draw()
   ctx.clearRect(0,0,780, 720)
   jugador1.draw()
   jugador2.draw()
@@ -202,7 +201,7 @@ function start(){
 
 function gameOver(){
   clearInterval(interval)
-  prompt("¿Cuál es tu mensaje postumo?")
+  prompt("¿Cuál es tu mensaje póstumo?")
   
 }
 
@@ -257,6 +256,7 @@ class Camion {
     this.right=true
     this.down=false
     this.vel = vel
+    //this.music.src = 'We_Dance.mp3'
     
     
   }
@@ -296,6 +296,7 @@ function checkCamionCollisions(){
     camion.checkCollision(jugador2) ||
     camion.checkCollision(jugador3) ||
     camion.checkCollision(jugador4) ){
+      alert("Perdiste")
       gameOver()
     }
   })
